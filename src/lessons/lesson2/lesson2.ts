@@ -24,6 +24,14 @@ console.log('lesson 2');
 // Task 01
 // Реализовать функцию sum которая суммирует 2 числа следующим образом sum(3)(6) === 9
 
+let sum = (a: number) => {
+    return (b: number) => {
+        return a + b
+    }
+}
+console.log(sum(4)(5))
+
+
 // Task 02
 // Реализовать функцию makeCounter которая работает следующим образом:
 // const counter = makeCounter();
@@ -32,6 +40,14 @@ console.log('lesson 2');
 // const counter2 = makeCounter();
 // counter2(); // 1
 // counter(); // 3
+const makeCounter = () => {
+    let a = 0;
+    return () => {
+        return a++
+    }
+}
+const counter = makeCounter()
+counter()
 
 // Task 03
 // Переписать функцию из Task 02 так, что бы она принимала число в качестве аргумента и это число было стартовым значением счетчика
@@ -40,16 +56,41 @@ console.log('lesson 2');
 // decrease: -1
 // reset: установить счетчик в 0;
 // set: установить счетчик в заданное значение;
+const makeCounterObj = (a:number) => {
+    let count = a;
+    return {
+        increase(){return a++},
+        decrease(){return a--},
+        reset(){return a=0},
+        set(num:number){return a = num},
+    }
+}
+let counterObj =  makeCounterObj(3)
 
 // Task 04*
 // Реализовать функцию superSum которая принимает число в качестве аргумента, которое указывает на количество слагаемых
 // и что бы корректно работали следующие вызовы:
-// 1) superSum(0) //0
-// 2) superSum(3)(2)(5)(3) //10
-// 3) superSum(3)(2)(5,3) //10
-// 4) superSum(3)(2,5,3) //10
-// 5) superSum(3)(2,5)(3) //10
-// 6) superSum(3)(2,5)(3,9) //10
+// 1) curriedSum(0)
+// curriedSum(3)(2)(5)(3)
+// curriedSum(3)(2)(5,3)
+// curriedSum(3)(2,5,3)
+// curriedSum(3)(2,5)(3)
+// curriedSum(3)(2,5)(3,9)
+/*function curry(func) {
+    return function curried(...args) {
+        if (args.length >= func.length) {
+            return func.apply(this, args);
+        } else {
+            return function(...args2) {
+                return curried.apply(this, args.concat(args2));
+            }
+        }
+    };
+}
+function sum1(a, b, c, d) {
+    return ((a + b + c) * d)/3;
+}
+let curriedSum = curry(sum1)*/
 
 // P.S. типизируйте только аргументы, а при вызове функции используйте @ts-ignore
 
@@ -58,6 +99,18 @@ console.log('lesson 2');
 
 // Task 06
 // написать функцию, которая повторяет функционал метода flat массива на всю глубину.
-
+const flat = (arr:any) => {
+    let result = []
+    while (arr.length!==0){
+        let el = arr.shift()
+        if(Array.isArray(el)){
+            arr.unshift(...el)
+            continue
+        }
+        result.push(el)
+    }
+    return result
+}
 // just a plug
-export default () => {};
+export default () => {
+};
