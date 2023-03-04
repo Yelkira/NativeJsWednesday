@@ -1,7 +1,7 @@
 console.log('lesson 2');
 
 // Lexical environment
-// http://jsflow.org/docs/lex-env/
+// http://jsflow.org/docs/lex-env////
 
 //// Closure
 // https://learn.javascript.ru/closure
