@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './redux/state';
+import Lesson4 from "./lessons/lesson4/Lesson4";
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
+    //<Provider store={store}>
+        <Lesson4 />
+    //</Provider>
+,
     document.getElementById('root')
 );
